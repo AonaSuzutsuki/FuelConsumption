@@ -7,7 +7,7 @@ namespace FuelConsumption2.Views
 {
     public partial class AddVehiclePage : ContentPage
     {
-        public AddVehiclePage(Action<MasterDetailMenuItem> itemAddAction, Action closeModal, AddVehiclePageModel model = null)
+        public AddVehiclePage(Action<MasterDetailMenuItem> itemAddAction, Action closeModal, Action saveAction, AddVehiclePageModel model = null)
         {
             InitializeComponent();
 
@@ -15,6 +15,7 @@ namespace FuelConsumption2.Views
                 model = new AddVehiclePageModel();
             model.ItemAddAction = itemAddAction;
             model.CloseModal = closeModal;
+            model.SaveAction = saveAction;
 
             var vm = new ViewModels.AddVehiclePageViewModel(model);
             BindingContext = vm;

@@ -35,6 +35,11 @@ namespace FuelConsumption2.Views
             ListView = MenuItemsListView;
         }
 
+        public void Load()
+        {
+            vm.Load();
+        }
+
         public void PushModal(Page page) => PushModalPage(new NavigationPage(page));
 
         public void CloseModal() => CloseModalPage();

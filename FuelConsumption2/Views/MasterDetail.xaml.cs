@@ -26,6 +26,16 @@ namespace FuelConsumption2.Views
                 ItemSelected(first);
         }
 
+        public void Load()
+        {
+            MasterPage.Load();
+        }
+
+        public void Save()
+        {
+
+        }
+
         private void ChangeMasterPage(Page page)
         {
             Detail = page;

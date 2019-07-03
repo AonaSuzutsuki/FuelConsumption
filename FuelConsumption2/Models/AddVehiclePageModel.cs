@@ -38,6 +38,7 @@ namespace FuelConsumption2.Models
         public MasterDetailMenuItem EditItem { get; set; }
         public Action<MasterDetailMenuItem> ItemAddAction { get; set; }
         public Action CloseModal { get; set; }
+        public Action SaveAction { get; set; }
 
         public void AddToMenuItems()
         {
@@ -56,6 +57,8 @@ namespace FuelConsumption2.Models
                     TargetType = typeof(MasterDetailDetail)
                 });
             }
+
+            SaveAction();
             CloseModal();
         }
     }
