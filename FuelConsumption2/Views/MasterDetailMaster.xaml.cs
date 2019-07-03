@@ -17,11 +17,14 @@ namespace FuelConsumption2.Views
     {
         public ListView ListView;
 
+        private List<MasterDetailMenuItem> _detailMenuItems;
+        public List<MasterDetailMenuItem> DetailMenuItems => _detailMenuItems ?? (_detailMenuItems = vm.MenuItems.ToList());
+
         public Action<Page> DetailMasterPage;
         public Action<Page> PushModalPage;
         public Action CloseModalPage;
 
-        public MasterDetailMasterViewModel vm;
+        private MasterDetailMasterViewModel vm;
 
         public MasterDetailMaster()
         {

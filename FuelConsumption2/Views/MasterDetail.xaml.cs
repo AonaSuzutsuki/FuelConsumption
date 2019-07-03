@@ -21,7 +21,9 @@ namespace FuelConsumption2.Views
             MasterPage.DetailMasterPage = ChangeMasterPage;
             MasterPage.CloseModalPage = () => Navigation.PopModalAsync();
 
-            var list = MasterPage.ListView.ItemsSource.Select();
+            var first = MasterPage.DetailMenuItems.Count > 0 ? MasterPage.DetailMenuItems.First() : null;
+            if (first != null)
+                ItemSelected(first);
         }
 
         private void ChangeMasterPage(Page page)
