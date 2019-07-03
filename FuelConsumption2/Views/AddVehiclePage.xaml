@@ -1,5 +1,35 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FuelConsumption2.Views.AddVehiclePage">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FuelConsumption2.Views.AddVehiclePage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Close" Command="{Binding CloseBtClicked}" />
+        <ToolbarItem Text="Add" Command="{Binding AddBtClicked}" />
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
+        
+        <Grid Margin="15">
+            <StackLayout>
+                <Grid>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label
+                        Text="Name"
+                        VerticalTextAlignment="Center" />
+                    <Entry
+                        Grid.Column="1"
+                        Text="{Binding VehicleNameText.Value}" />
+                    
+                </Grid>
+            </StackLayout>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

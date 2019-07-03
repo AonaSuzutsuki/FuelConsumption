@@ -1,4 +1,5 @@
 ﻿using System;
+using FuelConsumption2.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace FuelConsumption2
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Views.MasterDetail();
         }
 
         protected override void OnStart()

@@ -135,4 +135,8 @@
       <Name>FuelConsumption2</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hamburger%402x.png" />
+    <BundleResource Include="Resources\hamburger.png" />
+  </ItemGroup>
 </Project>

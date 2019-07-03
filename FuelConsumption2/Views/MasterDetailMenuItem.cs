@@ -8,10 +8,6 @@ namespace FuelConsumption2.Views
 {
     public class MasterDetailMenuItem
     {
-        public MasterDetailMenuItem()
-        {
-            TargetType = typeof(MasterDetailDetail);
-        }
         public int Id { get; set; }
         public string Title { get; set; }
 

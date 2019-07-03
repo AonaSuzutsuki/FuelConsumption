@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using FuelConsumption2.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,40 +17,20 @@ namespace FuelConsumption2.Views
     {
         public ListView ListView;
 
+        public Action<Page> DetailMasterPage;
+        public Action<Page> PushModalPage;
+        public Action CloseModalPage;
+
         public MasterDetailMaster()
         {
             InitializeComponent();
 
-            BindingContext = new MasterDetailMasterViewModel();
+            BindingContext = new MasterDetailMasterViewModel(PushModal, CloseModal);
             ListView = MenuItemsListView;
         }
 
-        class MasterDetailMasterViewModel : INotifyPropertyChanged
-        {
-            public ObservableCollection<MasterDetailMenuItem> MenuItems { get; set; }
+        public void PushModal(Page page) => PushModalPage(new NavigationPage(page));
 
-            public MasterDetailMasterViewModel()
-            {
-                MenuItems = new ObservableCollection<MasterDetailMenuItem>(new[]
-                {
-                    new MasterDetailMenuItem { Id = 0, Title = "Page 1" },
-                    new MasterDetailMenuItem { Id = 1, Title = "Page 2" },
-                    new MasterDetailMenuItem { Id = 2, Title = "Page 3" },
-                    new MasterDetailMenuItem { Id = 3, Title = "Page 4" },
-                    new MasterDetailMenuItem { Id = 4, Title = "Page 5" },
-                });
-            }
-
-            #region INotifyPropertyChanged Implementation
-            public event PropertyChangedEventHandler PropertyChanged;
-            void OnPropertyChanged([CallerMemberName] string propertyName = "")
-            {
-                if (PropertyChanged == null)
-                    return;
-
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-            #endregion
-        }
+        public void CloseModal() => CloseModalPage();
     }
 }
