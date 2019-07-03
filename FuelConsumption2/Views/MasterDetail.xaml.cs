@@ -17,7 +17,7 @@ namespace FuelConsumption2.Views
         {
             InitializeComponent();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
-            MasterPage.PushModalPage = (Page page) => Navigation.PushModalAsync(page);
+            MasterPage.PushModalPage = page => Navigation.PushModalAsync(page);
             MasterPage.DetailMasterPage = ChangeMasterPage;
             MasterPage.CloseModalPage = () => Navigation.PopModalAsync();
 
@@ -54,8 +54,7 @@ namespace FuelConsumption2.Views
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as MasterDetailMenuItem;
-            if (item == null)
+            if (!(e.SelectedItem is MasterDetailMenuItem item))
                 return;
 
             ItemSelected(item);
