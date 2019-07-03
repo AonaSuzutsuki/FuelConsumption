@@ -6,7 +6,7 @@
     IconImageSource="hamburger.png"
     Title="Master">
     <StackLayout>
-        <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+        <ListView x:Name="MenuItemsListView" SeparatorVisibility=" Default" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
             <ListView.Header>
                 <Grid BackgroundColor="#03A9F4">
                     <Grid.ColumnDefinitions>
@@ -52,7 +52,8 @@
                         <StackLayout
                             Padding="15,10"
                             HorizontalOptions="FillAndExpand"
-                            Orientation="Horizontal">
+                            Orientation="Horizontal"
+                            BackgroundColor="{Binding BackgroundColor}">
                             
                             <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="24" />
                         </StackLayout>

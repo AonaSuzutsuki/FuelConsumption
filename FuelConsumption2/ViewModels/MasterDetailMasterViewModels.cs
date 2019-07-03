@@ -13,11 +13,9 @@ namespace FuelConsumption2.ViewModels
 {
     public class MasterDetailMasterViewModel : BindableBase
     {
-        public ObservableCollection<MasterDetailMenuItem> MenuItems { get; set; }
-
-        public MasterDetailMasterViewModel(Action<Page> action, Action closeModal)
+        public MasterDetailMasterViewModel(Action<Page> navigateAction, Action closeModal)
         {
-            this.navigateAction = action;
+            this.navigateAction = navigateAction;
             this.closeModal = closeModal;
 
             MenuItems = new ObservableCollection<MasterDetailMenuItem>(new[]
@@ -32,11 +30,20 @@ namespace FuelConsumption2.ViewModels
             MenuItemAddBtClicked = new Command(MenuItemAddBt_Clicked);
         }
 
-        Action<Page> navigateAction;
-        Action closeModal;
+        #region Fields
+        private readonly Action<Page> navigateAction;
+        private readonly Action closeModal;
+        #endregion
 
+        #region Properties
+        public ObservableCollection<MasterDetailMenuItem> MenuItems { get; set; }
+        #endregion
+
+        #region Event Properties
         public ICommand MenuItemAddBtClicked { get; set; }
+        #endregion
 
+        #region Event Methods
         public void MenuItemAddBt_Clicked()
         {
             navigateAction(new AddVehiclePage((item) => MenuItems.Add(item), closeModal));
@@ -61,5 +68,6 @@ namespace FuelConsumption2.ViewModels
 
             MenuItems.Remove(item);
         }
+        #endregion
     }
 }

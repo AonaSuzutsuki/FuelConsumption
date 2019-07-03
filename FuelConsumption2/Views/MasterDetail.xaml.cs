@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace FuelConsumption2.Views
             MasterPage.PushModalPage = (Page page) => Navigation.PushModalAsync(page);
             MasterPage.DetailMasterPage = ChangeMasterPage;
             MasterPage.CloseModalPage = () => Navigation.PopModalAsync();
+
+            var list = MasterPage.ListView.ItemsSource.Select();
         }
 
         private void ChangeMasterPage(Page page)
@@ -27,18 +30,23 @@ namespace FuelConsumption2.Views
             IsPresented = false;
         }
 
+        private void ItemSelected(MasterDetailMenuItem item)
+        {
+            var page = (Page)Activator.CreateInstance(item.TargetType);
+            page.Title = item.Title;
+
+            ChangeMasterPage(new NavigationPage(page));
+
+            //MasterPage.ListView.SelectedItem = null;
+        }
+
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MasterDetailMenuItem;
             if (item == null)
                 return;
 
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
-
-            ChangeMasterPage(new NavigationPage(page));
-
-            MasterPage.ListView.SelectedItem = null;
+            ItemSelected(item);
         }
     }
 }
