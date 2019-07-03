@@ -14,16 +14,48 @@ namespace FuelConsumption2.Models
             set => SetProperty(ref vehicleName, value);
         }
 
+        private string actionButtonText = "Add";
+        public string ActionButtonText
+        {
+            get => actionButtonText;
+            set => SetProperty(ref actionButtonText, value);
+        }
+
+        private bool editMode;
+        public bool EditMode
+        {
+            get => editMode;
+            set
+            {
+                if (value)
+                    ActionButtonText = "Edit";
+                else
+                    ActionButtonText = "Add";
+                editMode = value;
+            }
+        }
+
+        public MasterDetailMenuItem EditItem { get; set; }
         public Action<MasterDetailMenuItem> ItemAddAction { get; set; }
         public Action CloseModal { get; set; }
 
         public void AddToMenuItems()
         {
-            ItemAddAction(new MasterDetailMenuItem
+            if (EditMode)
             {
-                Title = VehicleName,
-                TargetType = typeof(MasterDetailDetail)
-            });
+                if (EditItem != null)
+                {
+                    EditItem.Title = VehicleName;
+                }
+            }
+            else
+            {
+                ItemAddAction(new MasterDetailMenuItem
+                {
+                    Title = VehicleName,
+                    TargetType = typeof(MasterDetailDetail)
+                });
+            }
             CloseModal();
         }
     }

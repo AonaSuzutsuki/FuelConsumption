@@ -21,16 +21,30 @@ namespace FuelConsumption2.Views
         public Action<Page> PushModalPage;
         public Action CloseModalPage;
 
+        public MasterDetailMasterViewModel vm;
+
         public MasterDetailMaster()
         {
             InitializeComponent();
 
-            BindingContext = new MasterDetailMasterViewModel(PushModal, CloseModal);
+            vm = new MasterDetailMasterViewModel(PushModal, CloseModal);
+            BindingContext = vm;
             ListView = MenuItemsListView;
         }
 
         public void PushModal(Page page) => PushModalPage(new NavigationPage(page));
 
         public void CloseModal() => CloseModalPage();
+
+        private void OnEdit(object sender, EventArgs e)
+        {
+            var model = (MenuItem)sender;
+            vm.MenuItemEditBt_Clicked((MasterDetailMenuItem)model.CommandParameter);
+        }
+        private void OnDelete(object sender, EventArgs e)
+        {
+            var model = (MenuItem)sender;
+            vm.MenuItemDeleteBt_Clicked((MasterDetailMenuItem)model.CommandParameter);
+        }
     }
 }

@@ -30,10 +30,6 @@
                     <StackLayout Grid.Row="2" Grid.Column="2"
                                  Orientation="Horizontal"
                                  HorizontalOptions="End">
-                        <Button Text="Edit"
-                            FontSize="20"
-                                TextColor="#fff"
-                            Command="{Binding MenuItemEditBtClicked}"/>
                         <Button Text="+"
                                 FontSize="20"
                                 TextColor="#fff"
@@ -45,10 +41,13 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="Edit"/>
+                            <MenuItem Text="Edit"
+                                      Clicked="OnEdit"
+                                      CommandParameter="{Binding .}" />
                             <MenuItem Text="Delete"
                                       IsDestructive="True"
-                                      Command="" />
+                                      Clicked="OnDelete"
+                                      CommandParameter="{Binding .}" />
                         </ViewCell.ContextActions>
                         <StackLayout
                             Padding="15,10"

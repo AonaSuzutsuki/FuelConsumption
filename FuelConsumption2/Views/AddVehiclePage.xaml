@@ -6,7 +6,7 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Close" Command="{Binding CloseBtClicked}" />
-        <ToolbarItem Text="Add" Command="{Binding AddBtClicked}" />
+        <ToolbarItem Text="{Binding ActionButtonText.Value}" Command="{Binding AddBtClicked}" />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

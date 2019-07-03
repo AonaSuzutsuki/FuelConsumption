@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using FuelConsumption2.Models;
 using FuelConsumption2.Views;
 using Prism.Mvvm;
 using Reactive.Bindings;
@@ -39,6 +40,26 @@ namespace FuelConsumption2.ViewModels
         public void MenuItemAddBt_Clicked()
         {
             navigateAction(new AddVehiclePage((item) => MenuItems.Add(item), closeModal));
+        }
+
+        public void MenuItemEditBt_Clicked(MasterDetailMenuItem item)
+        {
+            Console.WriteLine(item);
+            var model = new AddVehiclePageModel()
+            {
+                EditMode = true,
+                EditItem = item,
+                VehicleName = item.Title
+            };
+
+            navigateAction(new AddVehiclePage((_item) => MenuItems.Add(_item), closeModal, model));
+        }
+        public void MenuItemDeleteBt_Clicked(MasterDetailMenuItem item)
+        {
+            if (item == null)
+                return;
+
+            MenuItems.Remove(item);
         }
     }
 }
