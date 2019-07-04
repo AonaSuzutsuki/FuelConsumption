@@ -30,7 +30,7 @@ namespace FuelConsumption2.Views
 			if (first != null)
 				ItemSelected(first);
 			else
-				ChangeMasterNavigationPage(new MasterDetailItemView());
+				ChangeMasterNavigationPage(new MasterDetailItemView(new MasterDetailMenuItem()));
 
 		}
 
@@ -83,8 +83,8 @@ namespace FuelConsumption2.Views
 
         private void ItemSelected(MasterDetailMenuItem item)
         {
-            var page = (Page) Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
+            var page = (Page) Activator.CreateInstance(item.TargetType, item);
+            //page.Title = item.Title;
 
             ChangeMasterNavigationPage(page);
 

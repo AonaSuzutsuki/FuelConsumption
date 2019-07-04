@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using FuelConsumption2.Extensions;
 using FuelConsumption2.Models;
 using FuelConsumption2.Views;
+using Newtonsoft.Json;
 using Prism.Mvvm;
+using Reactive.Bindings;
 using Xamarin.Forms;
 
 namespace FuelConsumption2.ViewModels
@@ -13,32 +18,37 @@ namespace FuelConsumption2.ViewModels
     public class MasterDetailItemViewModel : BindableBase
     {
 
-        public MasterDetailItemViewModel()
+        public MasterDetailItemViewModel(MasterDetailItemModel model)
         {
-            FuelConsumptionItems = new ObservableCollection<FuelConsumptionInfo>()
-            {
-                new FuelConsumptionInfo(),
-            };
+            _model = model;
 
+            FuelConsumptionItems = model.FuelConsumptionItems.ToReadOnlyReactiveCollection();
             AddFuelConsumptionBtClicked = new Command(AddFuelConsumptionBt_Clicked);
         }
 
-        public ObservableCollection<FuelConsumptionInfo> FuelConsumptionItems { get; set; }
+        private readonly MasterDetailItemModel _model;
+
+        public ReadOnlyCollection<FuelConsumptionInfo> FuelConsumptionItems { get; set; }
 
         public ICommand AddFuelConsumptionBtClicked { get; set; }
 
         public void AddFuelConsumptionBt_Clicked()
         {
-            NavigationClass.PushModal(new AddFuelConsumptionPage(new AddFuelConsumptionPageModel
-            {
-                ItemAddAction = FuelConsumptionItems.Add,
-                SaveAction = Save
-            }));
+            _model.AddFuelConsumption();
         }
 
-        public void Save()
+        public void Load()
         {
+            _model.Load();
+        }
 
+        public void MenuItemEditBt_Clicked(FuelConsumptionInfo fuelConsumptionInfo)
+        {
+            _model.Edit(fuelConsumptionInfo);
+        }
+        public void MenuItemDeleteBt_Clicked(FuelConsumptionInfo fuelConsumptionInfo)
+        {
+            _model.Delete(fuelConsumptionInfo);
         }
     }
 }

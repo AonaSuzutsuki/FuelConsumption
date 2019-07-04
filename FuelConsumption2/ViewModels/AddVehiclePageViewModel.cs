@@ -17,6 +17,7 @@ namespace FuelConsumption2.ViewModels
 
             ActionButtonText = ReactiveProperty.FromObject(model, m => m.ActionButtonText);
             VehicleNameText = model.ToReactivePropertyAsSynchronized(m => m.VehicleName);
+            BaseOdo = model.ToReactivePropertyAsSynchronized(m => m.BaseOdo);
 
             CloseBtClicked = new Command(CloseBt_Clicked);
             AddBtClicked = new Command(AddBt_Clicked);
@@ -26,6 +27,7 @@ namespace FuelConsumption2.ViewModels
 
         public ReactiveProperty<string> ActionButtonText { get; set; }
         public ReactiveProperty<string> VehicleNameText { get; set; }
+        public ReactiveProperty<double> BaseOdo { get; set; }
 
         public ICommand CloseBtClicked { get; set; }
         public ICommand AddBtClicked { get; set; }

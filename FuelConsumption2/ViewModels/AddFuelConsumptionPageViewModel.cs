@@ -22,7 +22,7 @@ namespace FuelConsumption2.ViewModels
 
             ActionButtonText = ReactiveProperty.FromObject(model, m => m.ActionButtonText);
             FuelType = model.FuelTypes.ToReadOnlyReactiveCollection();
-            FuelTypeSelectedIndex = ReactiveProperty.FromObject(model, m => m.FuelTypeSelectedIndex);
+            FuelTypeSelectedItem = ReactiveProperty.FromObject(model, m => m.FuelTypeSelectedItem);
 
             CloseBtClicked = new Command(CloseBt_Clicked);
             AddBtClicked = new Command(AddBt_Clicked);
@@ -38,7 +38,7 @@ namespace FuelConsumption2.ViewModels
 
         public ReactiveProperty<string> ActionButtonText { get; set; }
         public ReadOnlyReactiveCollection<string> FuelType { get; set; }
-        public ReactiveProperty<int> FuelTypeSelectedIndex { get; set; }
+        public ReactiveProperty<string> FuelTypeSelectedItem { get; set; }
 
         public ICommand CloseBtClicked { get; set; }
         public ICommand AddBtClicked { get; set; }

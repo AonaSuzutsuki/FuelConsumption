@@ -15,22 +15,31 @@ namespace FuelConsumption2.Views
     {
         private readonly MasterDetailItemViewModel _viewModel;
 
-        public MasterDetailItemView()
+        public MasterDetailItemView(MasterDetailMenuItem masterDetailMenuItem)
         {
             InitializeComponent();
 
-            _viewModel = new MasterDetailItemViewModel();
+            Title = masterDetailMenuItem.Title;
+            var model = new MasterDetailItemModel
+            {
+                Title = masterDetailMenuItem.Title,
+                BaseOdo = masterDetailMenuItem.BaseOdo
+            };
+            _viewModel = new MasterDetailItemViewModel(model);
+            _viewModel.Load();
             BindingContext = _viewModel;
         }
 
         private void OnDelete(object sender, EventArgs e)
         {
-
+            var model = (MenuItem)sender;
+            _viewModel.MenuItemDeleteBt_Clicked((FuelConsumptionInfo)model.CommandParameter);
         }
 
         private void OnEdit(object sender, EventArgs e)
         {
-
+            var model = (MenuItem)sender;
+            _viewModel.MenuItemEditBt_Clicked((FuelConsumptionInfo)model.CommandParameter);
         }
 
         void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)

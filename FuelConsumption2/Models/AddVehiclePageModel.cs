@@ -14,6 +14,14 @@ namespace FuelConsumption2.Models
             set => SetProperty(ref vehicleName, value);
         }
 
+        private double baseOdo;
+
+        public double BaseOdo
+        {
+            get => baseOdo;
+            set => SetProperty(ref baseOdo, value);
+        }
+
         private string actionButtonText = "Add";
         public string ActionButtonText
         {
@@ -46,6 +54,7 @@ namespace FuelConsumption2.Models
                 if (EditItem != null)
                 {
                     EditItem.Title = VehicleName;
+                    EditItem.BaseOdo = BaseOdo;
                 }
             }
             else
@@ -53,7 +62,7 @@ namespace FuelConsumption2.Models
                 ItemAddAction(new MasterDetailMenuItem
                 {
                     Title = VehicleName,
-                    TargetType = typeof(MasterDetailItemView)
+                    BaseOdo = BaseOdo
                 });
             }
 

@@ -7,11 +7,11 @@
     <MasterDetailPage.Master>
         <pages:MasterDetailMaster x:Name="MasterPage" />
     </MasterDetailPage.Master>
-    <MasterDetailPage.Detail>
+    <!--<MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
                 <pages:MasterDetailItemView />
             </x:Arguments>
         </NavigationPage>
-    </MasterDetailPage.Detail>
+    </MasterDetailPage.Detail>-->
 </MasterDetailPage>

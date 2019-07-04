@@ -55,7 +55,8 @@ namespace FuelConsumption2.ViewModels
             {
                 EditMode = true,
                 EditItem = item,
-                VehicleName = item.Title
+                VehicleName = item.Title,
+                BaseOdo = item.BaseOdo
             };
 
             NavigationClass.PushModal(new AddVehiclePage((_item) => MenuItems.Add(_item), Save, model));
@@ -67,7 +68,7 @@ namespace FuelConsumption2.ViewModels
             MenuItems.Remove(item);
 
             if (MenuItems.Count <= 0)
-                NavigationClass.PushDetail(new MasterDetailItemView());
+                NavigationClass.PushDetail(new MasterDetailItemView(new MasterDetailMenuItem()));
 
             this.Save();
         }

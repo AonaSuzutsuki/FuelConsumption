@@ -8,14 +8,18 @@ namespace FuelConsumption2.Models
     {
         public double PricePerLitter { get; set; }
         public double Litter { get; set; }
+        public double LitterPerTrip => Trip / Litter;
+        public double Trip { get; set; }
         public double Odo { get; set; }
         public DateTime Date { get; set; }
+        public string FuelType { get; set; }
         public string Memo { get; set; }
 
-        public double FuelConsumption(FuelConsumptionInfo fuelConsumptionInfo)
-        {
-            var trip = Odo - fuelConsumptionInfo.Odo;
-            return Math.Truncate(trip / Litter);
-        }
+        public string PricePerLitterText => $"{PricePerLitter} Yen/L";
+        public string LitterText => $"{Litter} L";
+        public string LitterPerTripText => $"{LitterPerTrip:F2} km/L";
+        public string TripText => $"{Trip} km";
+        public string OdoText => $"{Odo} km";
+        public string DateText => $"{Date:yyyy/MM/dd}";
     }
 }

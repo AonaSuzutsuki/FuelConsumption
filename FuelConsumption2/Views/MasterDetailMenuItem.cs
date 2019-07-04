@@ -11,13 +11,15 @@ namespace FuelConsumption2.Views
     {
         public int Id { get; set; }
 
-        private string title;
+        private string _title;
         public string Title
         {
-            get => title;
-            set => SetProperty(ref title, value);
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
-        public Type TargetType { get; set; }
+        public double BaseOdo { get; set; }
+
+        public Type TargetType { get; } = typeof(MasterDetailItemView);
     }
 }

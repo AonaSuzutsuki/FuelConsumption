@@ -29,7 +29,6 @@
         <Grid Margin="15">
             <StackLayout>
                 <Grid>
-                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
@@ -44,7 +43,24 @@
                           ef:Border.Color="White">
                         <ctrl:CustomEntry TextValue="{Binding VehicleNameText.Value}" />
                     </Grid>
-                    
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Text="Base Odo"
+                        VerticalTextAlignment="Center" />
+                    <Grid Grid.Column="1"
+                          ef:Border.Width="1"
+                          ef:Border.Radius="6"
+                          ef:Border.Color="White">
+                        <ctrl:CustomEntry TextValue="{Binding BaseOdo.Value}" />
+                    </Grid>
                 </Grid>
             </StackLayout>
         </Grid>

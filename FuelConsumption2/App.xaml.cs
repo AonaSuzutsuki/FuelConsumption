@@ -13,7 +13,10 @@ namespace FuelConsumption2
         {
             InitializeComponent();
 
-            _masterDetail = new Views.MasterDetail();
+            _masterDetail = new Views.MasterDetail
+            {
+                Detail = new MasterDetailItemView(new MasterDetailMenuItem())
+            };
             MainPage = _masterDetail;
         }
 

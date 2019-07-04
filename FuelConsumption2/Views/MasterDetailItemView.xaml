@@ -86,8 +86,8 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
 
-                                    <Label Text="2019/07/01" />
-                                    <Label Grid.Row="1" Text="6,512 km" />
+                                    <Label Text="{Binding DateText}" />
+                                    <Label Grid.Row="1" Text="{Binding OdoText}" />
                                 </Grid>
 
                                 <Grid Grid.Column="1">
@@ -96,19 +96,20 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
 
-                                    <Label Text="185 km" />
-                                    <Label Grid.Row="1" Text="5.54 L"  />
+                                    <Label Text="{Binding TripText}" />
+                                    <Label Grid.Row="1" Text="{Binding LitterText}"  />
                                 </Grid>
 
                                 <Label Grid.Column="2"
-                                       Text="33.39 km/L"
+                                       Text="{Binding LitterPerTripText}"
                                        VerticalOptions="Center"
                                        FontSize="Large"
-                                       VerticalTextAlignment="Center" />
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center" />
 
                             </Grid>
 
-                            <Label Grid.Row="1" Text="ハイオク" />
+                            <Label Grid.Row="1" Text="{Binding FuelType}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -114,7 +114,7 @@
                         BackgroundColor="Transparent"
                         HorizontalOptions="End"
                         ItemsSource="{Binding FuelType}"
-                        SelectedIndex="{Binding FuelTypeSelectedIndex.Value}" />
+                        SelectedItem="{Binding FuelTypeSelectedItem.Value}" />
             </Grid>
             
             <Grid Style="{StaticResource InputGrid}">
