@@ -47,12 +47,13 @@
                   HasUnevenRows="True"
                   BackgroundColor="Transparent"
                   SeparatorColor="White"
+                  ItemsSource="{Binding FuelConsumptionItems}"
                   ItemSelected="Handle_ItemSelected"><!--ItemsSource="{Binding FuelConsumptionItems}"-->
-            <ListView.ItemsSource>
+            <!--<ListView.ItemsSource>
                 <x:Array Type="{x:Type models:FuelConsumptionInfo}">
-                    <models:FuelConsumptionInfo Title="Test" />
+                    <models:FuelConsumptionInfo />
                 </x:Array>
-            </ListView.ItemsSource>
+            </ListView.ItemsSource>-->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

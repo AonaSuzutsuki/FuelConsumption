@@ -1,7 +1,36 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FuelConsumption2.Views.AddFuelConsumptionPage">
+             x:Class="FuelConsumption2.Views.AddFuelConsumptionPage"
+             xmlns:ctrl="clr-namespace:FuelConsumption2.Views.Controls"
+             BackgroundColor="Transparent">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#fff" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="#fff" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+            </Style>
+            
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="#fff" />
+            </Style>
+            
+            <Style x:Key="InputGrid" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="#444" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+            <Style x:Key="InputStackLayout" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#444" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Close" Command="{Binding CloseBtClicked}" />
@@ -9,5 +38,90 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
+        <StackLayout Margin="20">
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="End">
+                    
+                    <Label Text="¥" />
+                    <Entry BackgroundColor="Transparent"
+                           Text="{Binding PricePerLitter.Value}"
+                           Keyboard="Numeric" />
+                    <Label Text="/ L" />
+                </StackLayout>
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="Amount" />
+                <Entry Grid.Column="2" BackgroundColor="Transparent"
+                       Text="{Binding Litter.Value}"
+                       Keyboard="Numeric" />
+                <Label Grid.Column="3"
+                       Text="L"
+                       HorizontalOptions="End" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="ODO" />
+                <Entry Grid.Column="2" BackgroundColor="Transparent"
+                       Text="{Binding Odo.Value}"
+                       Keyboard="Numeric" />
+                <Label Grid.Column="3"
+                       Text="km"
+                       HorizontalOptions="End" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="Date" />
+                <DatePicker Grid.Column="2"
+                            BackgroundColor="Transparent"
+                            TextColor="White"
+                            Format="yyyy/MM/dd"
+                            Date="{Binding Date.Value}" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="Type" />
+                <Picker Grid.Column="2"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="End"
+                        ItemsSource="{Binding FuelType}"
+                        SelectedIndex="{Binding FuelTypeSelectedIndex.Value}" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Entry BackgroundColor="Transparent"
+                       Text="{Binding MemoText}" Placeholder="Memo"
+                       HorizontalTextAlignment="Start"/>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

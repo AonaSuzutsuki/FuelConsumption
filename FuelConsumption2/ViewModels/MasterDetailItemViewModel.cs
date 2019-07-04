@@ -15,6 +15,10 @@ namespace FuelConsumption2.ViewModels
 
         public MasterDetailItemViewModel()
         {
+            FuelConsumptionItems = new ObservableCollection<FuelConsumptionInfo>()
+            {
+                new FuelConsumptionInfo(),
+            };
 
             AddFuelConsumptionBtClicked = new Command(AddFuelConsumptionBt_Clicked);
         }
@@ -25,7 +29,16 @@ namespace FuelConsumption2.ViewModels
 
         public void AddFuelConsumptionBt_Clicked()
         {
-            NavigationClass.PushModal(new AddFuelConsumptionPage());
+            NavigationClass.PushModal(new AddFuelConsumptionPage(new AddFuelConsumptionPageModel
+            {
+                ItemAddAction = FuelConsumptionItems.Add,
+                SaveAction = Save
+            }));
+        }
+
+        public void Save()
+        {
+
         }
     }
 }
