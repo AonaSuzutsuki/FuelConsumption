@@ -26,9 +26,12 @@ namespace FuelConsumption2.Views
             MasterPage.Load();
 
             var first = MasterPage.DetailMenuItems.Count > 0 ? MasterPage.DetailMenuItems.First() : null;
-            if (first != null)
-                ItemSelected(first);
-        }
+			if (first != null)
+				ItemSelected(first);
+			else
+				ChangeMasterNavigationPage(new MasterDetailItemView());
+
+		}
 
         public void Save()
         {
@@ -63,6 +66,7 @@ namespace FuelConsumption2.Views
             };
             ChangeMasterPage(nav);
         }
+
         private void ChangeMasterPage(NavigationPage page)
         {
             page.BarBackgroundColor = Color.Black;
@@ -77,7 +81,7 @@ namespace FuelConsumption2.Views
 
             ChangeMasterNavigationPage(page);
 
-            //MasterPage.ListView.SelectedItem = null;
+            MasterPage.ListView.SelectedItem = null;
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
