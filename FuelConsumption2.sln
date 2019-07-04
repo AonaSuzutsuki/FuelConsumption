@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelConsumption2.UITests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelConsumption2", "FuelConsumption2\FuelConsumption2.csproj", "{A6146048-4600-4442-9C8F-0B353F8BAE57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelConsumption2UnitTest", "FuelConsumption2UnitTest\FuelConsumption2UnitTest.csproj", "{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,5 +69,17 @@ Global
 		{A6146048-4600-4442-9C8F-0B353F8BAE57}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{A6146048-4600-4442-9C8F-0B353F8BAE57}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{A6146048-4600-4442-9C8F-0B353F8BAE57}.Release|iPhone.Build.0 = Release|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{E0287B6D-0D3F-4E65-9924-C5AE4ACEC626}.Release|iPhone.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
