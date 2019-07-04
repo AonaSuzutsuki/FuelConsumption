@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FuelConsumption2.Views.MasterDetailItemView"
+    xmlns:local="using:FuelConsumption2.Views"
+    xmlns:models="clr-namespace:FuelConsumption2.Models;assembly=FuelConsumption2"
+    Title="Detail" BackgroundColor="Transparent">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#fff" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" />
+    </ContentPage.ToolbarItems>
+    
+    <Grid Margin="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="All" />
+                <Label Text="0.0km" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Ave" />
+                <Label Text="0.0km/L" />
+            </StackLayout>
+        </Grid>
+
+        <ListView Grid.Row="1" HasUnevenRows="True" BackgroundColor="Transparent" SeparatorColor="White"><!--ItemsSource="{Binding FuelConsumptionItems}"-->
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type models:FuelConsumptionInfo}">
+                    <models:FuelConsumptionInfo Title="Test" />
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Edit"
+                                      Clicked="OnEdit"
+                                      CommandParameter="{Binding .}" />
+                            <MenuItem Text="Delete"
+                                      IsDestructive="True"
+                                      Clicked="OnDelete"
+                                      CommandParameter="{Binding .}" />
+                        </ViewCell.ContextActions>
+
+                        <Grid Padding="10,5,10,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="2019/07/01" />
+                                    <Label Grid.Row="1" Text="6,512 km" />
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="185 km" />
+                                    <Label Grid.Row="1" Text="5.54 L"  />
+                                </Grid>
+
+                                <Label Grid.Column="2" Text="33.39 km/L" VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                            </Grid>
+
+                            <Label Grid.Row="1" Text="ハイオク" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+    <!--<StackLayout Padding="10">
+        <Label Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it." />
+    </StackLayout>-->
+</ContentPage>

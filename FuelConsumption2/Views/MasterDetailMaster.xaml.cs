@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using FuelConsumption2.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,40 +17,44 @@ namespace FuelConsumption2.Views
     {
         public ListView ListView;
 
+        private List<MasterDetailMenuItem> _detailMenuItems;
+        public List<MasterDetailMenuItem> DetailMenuItems => _detailMenuItems ?? (_detailMenuItems = vm.MenuItems.ToList());
+
+        public Action<Page> NavigateDetail { get; set; }
+        public Action<Page> PushModalPage { get; set; }
+        public Action CloseModalPage { get; set; }
+
+        private MasterDetailMasterViewModel vm;
+
         public MasterDetailMaster()
         {
             InitializeComponent();
 
-            BindingContext = new MasterDetailMasterViewModel();
+            vm = new MasterDetailMasterViewModel(PushDetail, PushModal, CloseModal);
+            BindingContext = vm;
             ListView = MenuItemsListView;
         }
 
-        class MasterDetailMasterViewModel : INotifyPropertyChanged
+        public void Load()
         {
-            public ObservableCollection<MasterDetailMenuItem> MenuItems { get; set; }
+            vm.Load();
+        }
 
-            public MasterDetailMasterViewModel()
-            {
-                MenuItems = new ObservableCollection<MasterDetailMenuItem>(new[]
-                {
-                    new MasterDetailMenuItem { Id = 0, Title = "Page 1" },
-                    new MasterDetailMenuItem { Id = 1, Title = "Page 2" },
-                    new MasterDetailMenuItem { Id = 2, Title = "Page 3" },
-                    new MasterDetailMenuItem { Id = 3, Title = "Page 4" },
-                    new MasterDetailMenuItem { Id = 4, Title = "Page 5" },
-                });
-            }
+        public  void PushDetail(Page page) => NavigateDetail(page);
 
-            #region INotifyPropertyChanged Implementation
-            public event PropertyChangedEventHandler PropertyChanged;
-            void OnPropertyChanged([CallerMemberName] string propertyName = "")
-            {
-                if (PropertyChanged == null)
-                    return;
+        public void PushModal(Page page) => PushModalPage(page);
 
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-            #endregion
+        public void CloseModal() => CloseModalPage();
+
+        private void OnEdit(object sender, EventArgs e)
+        {
+            var model = (MenuItem)sender;
+            vm.MenuItemEditBt_Clicked((MasterDetailMenuItem)model.CommandParameter);
+        }
+        private void OnDelete(object sender, EventArgs e)
+        {
+            var model = (MenuItem)sender;
+            vm.MenuItemDeleteBt_Clicked((MasterDetailMenuItem)model.CommandParameter);
         }
     }
 }

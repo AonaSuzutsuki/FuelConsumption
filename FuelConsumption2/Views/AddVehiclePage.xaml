@@ -1,5 +1,53 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FuelConsumption2.Views.AddVehiclePage">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FuelConsumption2.Views.AddVehiclePage"
+    xmlns:ctrl="clr-namespace:FuelConsumption2.Views.Controls"
+    xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"
+    BackgroundColor="Transparent">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#fff" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="#fff" />
+                
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Close" Command="{Binding CloseBtClicked}" />
+        <ToolbarItem Text="{Binding ActionButtonText.Value}" Command="{Binding AddBtClicked}" />
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
+        
+        <Grid Margin="15">
+            <StackLayout>
+                <Grid>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label
+                        Text="Name"
+                        VerticalTextAlignment="Center" />
+                    <Grid Grid.Column="1"
+                          ef:Border.Width="1"
+                          ef:Border.Radius="6"
+                          ef:Border.Color="White">
+                        <ctrl:CustomEntry TextValue="{Binding VehicleNameText.Value}" />
+                    </Grid>
+                    
+                </Grid>
+            </StackLayout>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

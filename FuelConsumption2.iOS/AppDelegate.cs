@@ -24,6 +24,7 @@ namespace FuelConsumption2.iOS
         {
             Xamarin.Calabash.Start();
             global::Xamarin.Forms.Forms.Init();
+            AiForms.Effects.iOS.Effects.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

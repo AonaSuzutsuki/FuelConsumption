@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FuelConsumption2.Views.Controls.CustomEntry">
+    <ContentView.Content>
+        <Grid>
+            <Entry x:Name="MainEntry" TextColor="White" BackgroundColor="Transparent" PropertyChanged="Handle_PropertyChanged" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

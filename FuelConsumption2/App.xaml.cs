@@ -1,4 +1,5 @@
 ﻿using System;
+using FuelConsumption2.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,21 +7,24 @@ namespace FuelConsumption2
 {
     public partial class App : Application
     {
+        private readonly MasterDetail _masterDetail;
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            _masterDetail = new Views.MasterDetail();
+            MainPage = _masterDetail;
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            _masterDetail.Load();
         }
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            _masterDetail.Save();
         }
 
         protected override void OnResume()

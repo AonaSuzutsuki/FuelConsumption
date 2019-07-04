@@ -1,11 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FuelConsumption2.Views.MasterDetailMaster" Title="Master">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FuelConsumption2.Views.MasterDetailMaster"
+    IconImageSource="hamburger.png"
+    Title="Master" BackgroundColor="Transparent">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#fff" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout>
-        <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+        <ListView x:Name="MenuItemsListView" SeparatorVisibility=" Default" HasUnevenRows="true" ItemsSource="{Binding MenuItems}" BackgroundColor="Transparent">
             <ListView.Header>
                 <Grid BackgroundColor="#03A9F4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="10" />
                     </Grid.ColumnDefinitions>
@@ -15,13 +30,39 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="10" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Column="1" Grid.Row="2" Text="AppName" Style="{DynamicResource SubtitleStyle}" />
+                    
+                    <Label Grid.Column="1" Grid.Row="2"
+                           Text="AppName"
+                           TextColor="#fff"
+                           Style="{DynamicResource SubtitleStyle}"
+                           VerticalOptions="Center"/>
+                    <StackLayout Grid.Row="2" Grid.Column="2"
+                                 Orientation="Horizontal"
+                                 HorizontalOptions="End">
+                        <Button Text="+"
+                                FontSize="20"
+                                TextColor="#fff"
+                                Command="{Binding MenuItemAddBtClicked}"/>
+                    </StackLayout>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Edit"
+                                      Clicked="OnEdit"
+                                      CommandParameter="{Binding .}" />
+                            <MenuItem Text="Delete"
+                                      IsDestructive="True"
+                                      Clicked="OnDelete"
+                                      CommandParameter="{Binding .}" />
+                        </ViewCell.ContextActions>
+                        <StackLayout
+                            Padding="15,10"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            
                             <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="24" />
                         </StackLayout>
                     </ViewCell>
