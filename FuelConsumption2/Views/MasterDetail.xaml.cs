@@ -47,7 +47,7 @@ namespace FuelConsumption2.Views
                 BarBackgroundColor = Color.Black,
                 BarTextColor = Color.White
             };
-            Navigation.PushModalAsync(nav);
+            Detail.Navigation.PushModalAsync(nav);
         }
 
         private void NavigationPush(Page page)
