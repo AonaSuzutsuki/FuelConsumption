@@ -3,6 +3,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="FuelConsumption2.Views.AddVehiclePage"
+    xmlns:ctrl="clr-namespace:FuelConsumption2.Views.Controls"
+    xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"
     BackgroundColor="Transparent">
 
     <ContentPage.Resources>
@@ -12,6 +14,7 @@
             </Style>
             <Style TargetType="Entry">
                 <Setter Property="TextColor" Value="#fff" />
+                
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -35,9 +38,12 @@
                     <Label
                         Text="Name"
                         VerticalTextAlignment="Center" />
-                    <Entry
-                        Grid.Column="1"
-                        Text="{Binding VehicleNameText.Value}" />
+                    <Grid Grid.Column="1"
+                          ef:Border.Width="1"
+                          ef:Border.Radius="6"
+                          ef:Border.Color="White">
+                        <ctrl:CustomEntry TextValue="{Binding VehicleNameText.Value}" />
+                    </Grid>
                     
                 </Grid>
             </StackLayout>
