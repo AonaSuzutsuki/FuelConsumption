@@ -16,7 +16,7 @@
     </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" />
+        <ToolbarItem Text="+" Command="{Binding AddFuelConsumptionBtClicked}" />
     </ContentPage.ToolbarItems>
     
     <Grid Margin="0">
@@ -43,7 +43,11 @@
             </StackLayout>
         </Grid>
 
-        <ListView Grid.Row="1" HasUnevenRows="True" BackgroundColor="Transparent" SeparatorColor="White"><!--ItemsSource="{Binding FuelConsumptionItems}"-->
+        <ListView Grid.Row="1"
+                  HasUnevenRows="True"
+                  BackgroundColor="Transparent"
+                  SeparatorColor="White"
+                  ItemSelected="Handle_ItemSelected"><!--ItemsSource="{Binding FuelConsumptionItems}"-->
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type models:FuelConsumptionInfo}">
                     <models:FuelConsumptionInfo Title="Test" />
@@ -70,9 +74,9 @@
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="90" />
+                                    <ColumnDefinition Width="70" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Grid>
@@ -95,7 +99,11 @@
                                     <Label Grid.Row="1" Text="5.54 L"  />
                                 </Grid>
 
-                                <Label Grid.Column="2" Text="33.39 km/L" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                                <Label Grid.Column="2"
+                                       Text="33.39 km/L"
+                                       VerticalOptions="Center"
+                                       FontSize="Large"
+                                       VerticalTextAlignment="Center" />
 
                             </Grid>
 

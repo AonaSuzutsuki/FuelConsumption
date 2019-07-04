@@ -17,6 +17,7 @@ namespace FuelConsumption2.Views
             InitializeComponent();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
             NavigationClass.PushModalPage = NavigationModal;
+            NavigationClass.PushPage = NavigationPush;
             NavigationClass.NavigateDetail = ChangeMasterNavigationPage;
             NavigationClass.CloseModalPage = () => Navigation.PopModalAsync();
         }
@@ -47,6 +48,12 @@ namespace FuelConsumption2.Views
                 BarTextColor = Color.White
             };
             Navigation.PushModalAsync(nav);
+        }
+
+        private void NavigationPush(Page page)
+        {
+            page.BackgroundColor = Color.Black;
+            Detail.Navigation.PushAsync(page);
         }
 
         private void ChangeMasterPage(Page page)
