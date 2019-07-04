@@ -16,12 +16,8 @@ namespace FuelConsumption2.ViewModels
 {
     public class MasterDetailMasterViewModel : BindableBase
     {
-        public MasterDetailMasterViewModel(Action<Page> pushDetail, Action<Page> navigateModal, Action closeModal)
+        public MasterDetailMasterViewModel()
         {
-            _navigateModal = navigateModal;
-            _closeModal = closeModal;
-            _pushDetail = pushDetail;
-
             //MenuItems = new ObservableCollection<MasterDetailMenuItem>(new[]
             //{
             //        new MasterDetailMenuItem { Id = 0, Title = "Page 1", TargetType = typeof(MasterDetailItemView) },
@@ -36,10 +32,6 @@ namespace FuelConsumption2.ViewModels
         }
 
         #region Fields
-
-        private readonly Action<Page> _pushDetail;
-        private readonly Action<Page> _navigateModal;
-        private readonly Action _closeModal;
         #endregion
 
         #region Properties
@@ -53,7 +45,7 @@ namespace FuelConsumption2.ViewModels
         #region Event Methods
         public void MenuItemAddBt_Clicked()
         {
-            _navigateModal(new AddVehiclePage((item) => MenuItems.Add(item), _closeModal, Save));
+            NavigationClass.PushModal(new AddVehiclePage((item) => MenuItems.Add(item), Save));
         }
 
         public void MenuItemEditBt_Clicked(MasterDetailMenuItem item)
@@ -66,7 +58,7 @@ namespace FuelConsumption2.ViewModels
                 VehicleName = item.Title
             };
 
-            _navigateModal(new AddVehiclePage((_item) => MenuItems.Add(_item), _closeModal, Save, model));
+            NavigationClass.PushModal(new AddVehiclePage((_item) => MenuItems.Add(_item), Save, model));
         }
         public void MenuItemDeleteBt_Clicked(MasterDetailMenuItem item)
         {
@@ -75,7 +67,7 @@ namespace FuelConsumption2.ViewModels
             MenuItems.Remove(item);
 
             if (MenuItems.Count <= 0)
-                _pushDetail(new MasterDetailItemView());
+                NavigationClass.PushDetail(new MasterDetailItemView());
 
             this.Save();
         }

@@ -20,17 +20,13 @@ namespace FuelConsumption2.Views
         private List<MasterDetailMenuItem> _detailMenuItems;
         public List<MasterDetailMenuItem> DetailMenuItems => _detailMenuItems ?? (_detailMenuItems = vm.MenuItems.ToList());
 
-        public Action<Page> NavigateDetail { get; set; }
-        public Action<Page> PushModalPage { get; set; }
-        public Action CloseModalPage { get; set; }
-
         private MasterDetailMasterViewModel vm;
 
         public MasterDetailMaster()
         {
             InitializeComponent();
 
-            vm = new MasterDetailMasterViewModel(PushDetail, PushModal, CloseModal);
+            vm = new MasterDetailMasterViewModel();
             BindingContext = vm;
             ListView = MenuItemsListView;
         }
@@ -39,12 +35,6 @@ namespace FuelConsumption2.Views
         {
             vm.Load();
         }
-
-        public  void PushDetail(Page page) => NavigateDetail(page);
-
-        public void PushModal(Page page) => PushModalPage(page);
-
-        public void CloseModal() => CloseModalPage();
 
         private void OnEdit(object sender, EventArgs e)
         {

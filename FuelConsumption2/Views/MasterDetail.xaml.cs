@@ -16,9 +16,9 @@ namespace FuelConsumption2.Views
         {
             InitializeComponent();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
-            MasterPage.PushModalPage = NavigationModal;
-            MasterPage.NavigateDetail = ChangeMasterNavigationPage;
-            MasterPage.CloseModalPage = () => Navigation.PopModalAsync();
+            NavigationClass.PushModalPage = NavigationModal;
+            NavigationClass.NavigateDetail = ChangeMasterNavigationPage;
+            NavigationClass.CloseModalPage = () => Navigation.PopModalAsync();
         }
 
         public void Load()

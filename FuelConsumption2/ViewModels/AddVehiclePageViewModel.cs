@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using FuelConsumption2.Models;
+using FuelConsumption2.Views;
 using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -32,7 +33,7 @@ namespace FuelConsumption2.ViewModels
 
         public void CloseBt_Clicked()
         {
-            model.CloseModal();
+            NavigationClass.CloseModal();
         }
 
         public void AddBt_Clicked()
