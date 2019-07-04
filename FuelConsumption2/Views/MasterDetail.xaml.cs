@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,18 +16,18 @@ namespace FuelConsumption2.Views
         {
             InitializeComponent();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
-            MasterPage.PushModalPage = page => Navigation.PushModalAsync(page);
-            MasterPage.DetailMasterPage = ChangeMasterPage;
+            MasterPage.PushModalPage = NavigationModal;
+            MasterPage.NavigateDetail = ChangeMasterNavigationPage;
             MasterPage.CloseModalPage = () => Navigation.PopModalAsync();
-
-            var first = MasterPage.DetailMenuItems.Count > 0 ? MasterPage.DetailMenuItems.First() : null;
-            if (first != null)
-                ItemSelected(first);
         }
 
         public void Load()
         {
             MasterPage.Load();
+
+            var first = MasterPage.DetailMenuItems.Count > 0 ? MasterPage.DetailMenuItems.First() : null;
+            if (first != null)
+                ItemSelected(first);
         }
 
         public void Save()
@@ -36,18 +35,47 @@ namespace FuelConsumption2.Views
 
         }
 
+        private void NavigationModal(Page page)
+        {
+            page.BackgroundColor = Color.Black;
+            var nav = new NavigationPage(page)
+            {
+                BarBackgroundColor = Color.Black,
+                BarTextColor = Color.White
+            };
+            Navigation.PushModalAsync(nav);
+        }
+
         private void ChangeMasterPage(Page page)
         {
+            BackgroundColor = Color.Black;
             Detail = page;
             IsPresented = false;
         }
 
+        private void ChangeMasterNavigationPage(Page page)
+        {
+            page.BackgroundColor = Color.Black;
+            var nav = new NavigationPage(page)
+            {
+                BarBackgroundColor = Color.Black,
+                BarTextColor = Color.White
+            };
+            ChangeMasterPage(nav);
+        }
+        private void ChangeMasterPage(NavigationPage page)
+        {
+            page.BarBackgroundColor = Color.Black;
+            page.BarTextColor = Color.White;
+            ChangeMasterPage((Page)page);
+        }
+
         private void ItemSelected(MasterDetailMenuItem item)
         {
-            var page = (Page)Activator.CreateInstance(item.TargetType);
+            var page = (Page) Activator.CreateInstance(item.TargetType);
             page.Title = item.Title;
 
-            ChangeMasterPage(new NavigationPage(page));
+            ChangeMasterNavigationPage(page);
 
             //MasterPage.ListView.SelectedItem = null;
         }

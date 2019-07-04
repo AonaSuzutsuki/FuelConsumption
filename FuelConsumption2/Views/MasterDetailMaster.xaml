@@ -4,9 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="FuelConsumption2.Views.MasterDetailMaster"
     IconImageSource="hamburger.png"
-    Title="Master">
+    Title="Master" BackgroundColor="Transparent">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#fff" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout>
-        <ListView x:Name="MenuItemsListView" SeparatorVisibility=" Default" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+        <ListView x:Name="MenuItemsListView" SeparatorVisibility=" Default" HasUnevenRows="true" ItemsSource="{Binding MenuItems}" BackgroundColor="Transparent">
             <ListView.Header>
                 <Grid BackgroundColor="#03A9F4">
                     <Grid.ColumnDefinitions>
@@ -52,8 +61,7 @@
                         <StackLayout
                             Padding="15,10"
                             HorizontalOptions="FillAndExpand"
-                            Orientation="Horizontal"
-                            BackgroundColor="{Binding BackgroundColor}">
+                            Orientation="Horizontal">
                             
                             <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="24" />
                         </StackLayout>

@@ -54,7 +54,7 @@ namespace FuelConsumption2.Models
                 ItemAddAction(new MasterDetailMenuItem
                 {
                     Title = VehicleName,
-                    TargetType = typeof(MasterDetailDetail)
+                    TargetType = typeof(MasterDetailItemView)
                 });
             }
 
