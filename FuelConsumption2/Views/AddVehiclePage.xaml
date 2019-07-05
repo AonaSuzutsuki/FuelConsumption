@@ -59,7 +59,7 @@
                           ef:Border.Width="1"
                           ef:Border.Radius="6"
                           ef:Border.Color="White">
-                        <ctrl:CustomEntry TextValue="{Binding BaseOdo.Value}" />
+                        <ctrl:CustomEntry Keyboard="Numeric" TextValue="{Binding BaseOdo.Value}" />
                     </Grid>
                 </Grid>
             </StackLayout>
