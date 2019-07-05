@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using System.Text;
 using FuelConsumption2.Extensions;
 using FuelConsumption2.Views;
 using Newtonsoft.Json;
@@ -53,8 +55,8 @@ namespace FuelConsumption2.Models
             if (File.Exists(filename))
                 File.Delete(filename);
 
-            if (MenuItems.Count <= 0)
-                NavigationClass.PushDetail(new MasterDetailItemView(new MasterDetailMenuItem()));
+            //if (MenuItems.Count <= 0)
+            //    NavigationClass.PushDetail(new MasterDetailItemView(new MasterDetailMenuItem()));
 
             this.Save(null);
         }
