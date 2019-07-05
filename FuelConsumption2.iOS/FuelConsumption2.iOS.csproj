@@ -52,7 +52,7 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>
     </CodesignEntitlements>
-    <CodesignProvision />
+    <CodesignProvision>iOS Team Provisioning Profile: xyz.aonsztk.FuelConsumption2</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
   </PropertyGroup>

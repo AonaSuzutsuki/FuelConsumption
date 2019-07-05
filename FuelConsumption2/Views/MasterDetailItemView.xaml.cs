@@ -23,7 +23,7 @@ namespace FuelConsumption2.Views
             var model = new MasterDetailItemModel
             {
                 Title = masterDetailMenuItem.Title,
-                BaseOdo = masterDetailMenuItem.BaseOdo
+                BaseOdoFunc = () => masterDetailMenuItem.BaseOdo
             };
             _viewModel = new MasterDetailItemViewModel(model);
             _viewModel.Load();

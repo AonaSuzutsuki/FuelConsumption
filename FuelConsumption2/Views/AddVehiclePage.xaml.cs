@@ -7,7 +7,7 @@ namespace FuelConsumption2.Views
 {
     public partial class AddVehiclePage : ContentPage
     {
-        public AddVehiclePage(Action<MasterDetailMenuItem> itemAddAction, Action saveAction, AddVehiclePageModel model = null)
+        public AddVehiclePage(Action<MasterDetailMenuItem> itemAddAction, Action<MasterDetailMenuItem> saveAction, AddVehiclePageModel model = null)
         {
             InitializeComponent();
 

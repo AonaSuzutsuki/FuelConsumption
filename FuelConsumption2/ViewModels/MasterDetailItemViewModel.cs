@@ -11,6 +11,7 @@ using FuelConsumption2.Views;
 using Newtonsoft.Json;
 using Prism.Mvvm;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using Xamarin.Forms;
 
 namespace FuelConsumption2.ViewModels
@@ -22,13 +23,17 @@ namespace FuelConsumption2.ViewModels
         {
             _model = model;
 
-            FuelConsumptionItems = model.FuelConsumptionItems.ToReadOnlyReactiveCollection();
+            TotalMileage = model.ObserveProperty(m => m.TotalMileageText).ToReactiveProperty();
+            AverageFuelConsumption = model.ObserveProperty(m => m.AverageFuelConsumptionText).ToReactiveProperty();
+            FuelConsumptionItems = model.ToReactivePropertyAsSynchronized(m => m.FuelConsumptionItems); //ReactiveProperty.FromObject(model, m => m.FuelConsumptionItems);
             AddFuelConsumptionBtClicked = new Command(AddFuelConsumptionBt_Clicked);
         }
 
         private readonly MasterDetailItemModel _model;
 
-        public ReadOnlyCollection<FuelConsumptionInfo> FuelConsumptionItems { get; set; }
+        public ReactiveProperty<string> TotalMileage { get; set; }
+        public ReactiveProperty<string> AverageFuelConsumption { get; set; }
+        public ReactiveProperty<ObservableCollection<FuelConsumptionInfo>> FuelConsumptionItems { get; set; }
 
         public ICommand AddFuelConsumptionBtClicked { get; set; }
 

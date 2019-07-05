@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="FuelConsumption2.Views.MasterDetailMaster"
     IconImageSource="hamburger.png"
-    Title="Master" BackgroundColor="Transparent">
+    Title="Master" BackgroundColor="#333">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,7 +15,11 @@
     </ContentPage.Resources>
 
     <StackLayout>
-        <ListView x:Name="MenuItemsListView" SeparatorVisibility=" Default" HasUnevenRows="true" ItemsSource="{Binding MenuItems}" BackgroundColor="Transparent">
+        <ListView x:Name="MenuItemsListView"
+                  SeparatorVisibility=" Default"
+                  HasUnevenRows="true"
+                  ItemsSource="{Binding MenuItems}"
+                  BackgroundColor="Transparent">
             <ListView.Header>
                 <Grid BackgroundColor="#03A9F4">
                     <Grid.ColumnDefinitions>

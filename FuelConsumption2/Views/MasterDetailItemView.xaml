@@ -33,13 +33,13 @@
             </Grid.ColumnDefinitions>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="All" />
-                <Label Text="0.0km" />
+                <Label Text="Mileage" />
+                <Label Text="{Binding TotalMileage.Value}" />
             </StackLayout>
 
             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Ave" />
-                <Label Text="0.0km/L" />
+                <Label Text="{Binding AverageFuelConsumption.Value}" />
             </StackLayout>
         </Grid>
 
@@ -47,7 +47,7 @@
                   HasUnevenRows="True"
                   BackgroundColor="Transparent"
                   SeparatorColor="White"
-                  ItemsSource="{Binding FuelConsumptionItems}"
+                  ItemsSource="{Binding FuelConsumptionItems.Value}"
                   ItemSelected="Handle_ItemSelected"><!--ItemsSource="{Binding FuelConsumptionItems}"-->
             <!--<ListView.ItemsSource>
                 <x:Array Type="{x:Type models:FuelConsumptionInfo}">

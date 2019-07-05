@@ -78,7 +78,7 @@ namespace FuelConsumption2.Models
 
 
         private readonly List<FuelConsumptionInfo> _fuelConsumptionInfos;
-        
+
         public FuelConsumptionInfo EditFuelConsumptionInfo { get; set; }
         public double BaseOdo { get; set; }
         public Action ChangedItemAction { get; set; }
@@ -110,7 +110,15 @@ namespace FuelConsumption2.Models
                 //}
 
                 _fuelConsumptionInfos.Remove(EditFuelConsumptionInfo);
-                var preItem = new FuelConsumptionInfo { Odo = Odo };
+                var preItem = new FuelConsumptionInfo
+                {
+                    PricePerLitter = PricePerLitter,
+                    Litter = Litter,
+                    Odo = Odo,
+                    Date = Date,
+                    Memo = Memo,
+                    FuelType = FuelTypeSelectedItem
+                };
                 var list = new List<FuelConsumptionInfo>(_fuelConsumptionInfos)
                 {
                     preItem
@@ -118,16 +126,25 @@ namespace FuelConsumption2.Models
                 var sortedList = new List<FuelConsumptionInfo>(list.OrderByDescending(info => info.Odo));
                 var index = sortedList.IndexOf(preItem);
 
-                var next = index > 0 ? sortedList[index - 1] : new FuelConsumptionInfo { Odo = BaseOdo };
-                var prev = index < sortedList.Count - 1 ? sortedList[index + 1] : new FuelConsumptionInfo { Odo = BaseOdo };
+                foreach (var item in sortedList.Select((v, i) => new { Index = i, Value = v }))
+                {
+                    var prev = item.Index < sortedList.Count - 1 ? sortedList[item.Index + 1] : new FuelConsumptionInfo { Odo = BaseOdo };
 
-                EditFuelConsumptionInfo.PricePerLitter = PricePerLitter;
-                EditFuelConsumptionInfo.Litter = Litter;
-                EditFuelConsumptionInfo.Odo = Odo;
-                EditFuelConsumptionInfo.Trip = Odo - prev.Odo;
-                EditFuelConsumptionInfo.Date = Date;
-                EditFuelConsumptionInfo.Memo = Memo;
-                EditFuelConsumptionInfo.FuelType = FuelTypeSelectedItem;
+                    item.Value.Trip = item.Value.Odo - prev.Odo;
+                }
+
+                //var next = index > 0 ? sortedList[index - 1] : new FuelConsumptionInfo { Odo = BaseOdo };
+                //var prev = index < sortedList.Count - 1 ? sortedList[index + 1] : new FuelConsumptionInfo { Odo = BaseOdo };
+
+                EditFuelConsumptionInfo.PricePerLitter = preItem.PricePerLitter;
+                EditFuelConsumptionInfo.Litter = preItem.Litter;
+                EditFuelConsumptionInfo.Odo = preItem.Odo;
+                EditFuelConsumptionInfo.Trip = preItem.Trip;
+                EditFuelConsumptionInfo.Date = preItem.Date;
+                EditFuelConsumptionInfo.Memo = preItem.Memo;
+                EditFuelConsumptionInfo.FuelType = preItem.FuelType;
+
+                //next.Trip = next.Odo - Odo;
 
                 ChangedItemAction();
                 //ChangedItemAction(EditFuelConsumptionInfo, new FuelConsumptionInfo
@@ -140,8 +157,6 @@ namespace FuelConsumption2.Models
                 //    Memo = Memo,
                 //    FuelType = FuelTypeSelectedItem
                 //});
-
-                next.Trip = next.Odo - Odo;
             }
             else
             {
@@ -156,7 +171,7 @@ namespace FuelConsumption2.Models
                 var next = index > 0 ? sortedList[index - 1] : new FuelConsumptionInfo { Odo = BaseOdo };
                 var prev = index < sortedList.Count - 1 ? sortedList[index + 1] : new FuelConsumptionInfo { Odo = BaseOdo };
 
-                ItemAddAction(new FuelConsumptionInfo
+                var current = new FuelConsumptionInfo
                 {
                     PricePerLitter = PricePerLitter,
                     Litter = Litter,
@@ -165,7 +180,8 @@ namespace FuelConsumption2.Models
                     Date = Date,
                     Memo = Memo,
                     FuelType = FuelTypeSelectedItem
-                });
+                };
+                ItemAddAction(current);
 
                 next.Trip = next.Odo - Odo;
             }

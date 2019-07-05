@@ -45,7 +45,7 @@ namespace FuelConsumption2.Models
 
         public MasterDetailMenuItem EditItem { get; set; }
         public Action<MasterDetailMenuItem> ItemAddAction { get; set; }
-        public Action SaveAction { get; set; }
+        public Action<MasterDetailMenuItem> SaveAction { get; set; }
 
         public void AddToMenuItems()
         {
@@ -55,18 +55,20 @@ namespace FuelConsumption2.Models
                 {
                     EditItem.Title = VehicleName;
                     EditItem.BaseOdo = BaseOdo;
+                    SaveAction(EditItem);
                 }
             }
             else
             {
-                ItemAddAction(new MasterDetailMenuItem
+                var item = new MasterDetailMenuItem
                 {
                     Title = VehicleName,
                     BaseOdo = BaseOdo
-                });
+                };
+                ItemAddAction(item);
+                SaveAction(item);
             }
 
-            SaveAction();
             NavigationClass.CloseModal();
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FuelConsumption2.Models;
 
 namespace FuelConsumption2.Views
 {
@@ -15,7 +16,7 @@ namespace FuelConsumption2.Views
         public MasterDetail()
         {
             InitializeComponent();
-            MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+
             NavigationClass.PushModalPage = NavigationModal;
             NavigationClass.PushPage = NavigationPush;
             NavigationClass.NavigateDetail = ChangeMasterNavigationPage;
@@ -25,18 +26,10 @@ namespace FuelConsumption2.Views
         public void Load()
         {
             MasterPage.Load();
-
-            var first = MasterPage.DetailMenuItems.Count > 0 ? MasterPage.DetailMenuItems.First() : null;
-			if (first != null)
-				ItemSelected(first);
-			else
-				ChangeMasterNavigationPage(new MasterDetailItemView(new MasterDetailMenuItem()));
-
 		}
 
         public void Save()
         {
-
         }
 
         private void NavigationModal(Page page)
@@ -79,24 +72,6 @@ namespace FuelConsumption2.Views
             page.BarBackgroundColor = Color.Black;
             page.BarTextColor = Color.White;
             ChangeMasterPage((Page)page);
-        }
-
-        private void ItemSelected(MasterDetailMenuItem item)
-        {
-            var page = (Page) Activator.CreateInstance(item.TargetType, item);
-            //page.Title = item.Title;
-
-            ChangeMasterNavigationPage(page);
-
-            MasterPage.ListView.SelectedItem = null;
-        }
-
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (!(e.SelectedItem is MasterDetailMenuItem item))
-                return;
-
-            ItemSelected(item);
         }
     }
 }

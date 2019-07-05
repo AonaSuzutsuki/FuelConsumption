@@ -8,7 +8,7 @@ namespace FuelConsumption2.Models
     {
         public double PricePerLitter { get; set; }
         public double Litter { get; set; }
-        public double LitterPerTrip => Trip / Litter;
+        public double LitterPerTrip => Litter > .0d ? Trip / Litter : .0d;
         public double Trip { get; set; }
         public double Odo { get; set; }
         public DateTime Date { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using FuelConsumption2.Models;
 using FuelConsumption2.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

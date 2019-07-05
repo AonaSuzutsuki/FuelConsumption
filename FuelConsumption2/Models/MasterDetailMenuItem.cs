@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FuelConsumption2.Views;
 using Prism.Mvvm;
 
-namespace FuelConsumption2.Views
+namespace FuelConsumption2.Models
 {
     public class MasterDetailMenuItem : BindableBase
     {
