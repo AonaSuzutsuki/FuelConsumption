@@ -41,15 +41,18 @@
         <StackLayout Margin="20">
             
             <Grid Style="{StaticResource InputGrid}">
-                <StackLayout Orientation="Horizontal"
-                             HorizontalOptions="End">
-                    
-                    <Label Text="¥" />
-                    <Entry BackgroundColor="Transparent"
-                           Text="{Binding PricePerLitter.Value}"
-                           Keyboard="Numeric" />
-                    <Label Text="/ L" />
-                </StackLayout>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1" Text="¥" />
+                <Entry Grid.Column="2" BackgroundColor="Transparent"
+                       Text="{Binding PricePerLitter.Value}"
+                       Keyboard="Numeric" />
+                <Label Grid.Column="3" Text="/ L" />
             </Grid>
             
             <Grid Style="{StaticResource InputGrid}">
