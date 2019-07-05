@@ -148,7 +148,52 @@ namespace FuelConsumption2.Models
             var masterDetailMenuItems = JsonConvert.DeserializeObject<FuelConsumptionInfo[]>(json);
             FuelConsumptionItems.AddRange(masterDetailMenuItems.OrderByDescending(info => info.Odo));
 
+
+            var fuelSavedPath = "Data/fuel.csv";
+            var csvLines = new List<string>(File.ReadAllText(fuelSavedPath).UnifiedNewLine().Split('\n'));
+            var names = csvLines[0].Split(',');
+            csvLines.RemoveAt(0);
+            csvLines.Remove("");
+
+            var values = new List<Dictionary<string, string>>();
+            foreach (var line in csvLines)
+            {
+                var splitLines = line.Split(',');
+                var dict = new Dictionary<string, string>();
+                values.Add(dict);
+                foreach (var item in splitLines.Select((v, i) => new { Index = i, Value = v }))
+                {
+                    if (item.Index < names.Length)
+                        dict.Add(names[item.Index], item.Value);
+                }
+            }
+
+            var prev = new FuelConsumptionInfo
+            {
+                Odo = BaseOdoFunc()
+            };
+            values.Reverse();
+            var list = new List<FuelConsumptionInfo>();
+            foreach (var value in values)
+            {
+                var odo = double.Parse(value["Mileage"]);
+                var info = new FuelConsumptionInfo
+                {
+                    PricePerLitter = double.Parse(value["Price"]),
+                    Litter = double.Parse(value["Amount"]),
+                    Odo = odo,
+                    Trip = odo - prev.Odo,
+                    Date = DateTime.Parse(value["Date"]),
+                    FuelType = value["FuelType"],
+                    Memo = default
+                };
+                prev = info;
+                list.Add(info);
+            }
+            FuelConsumptionItems = new ObservableCollection<FuelConsumptionInfo>(list.OrderByDescending(info => info.Odo));
+
             UpdateMillageAverage();
+
             //var list = new List<FuelConsumptionInfo>();
             //for (int i = 0; i < 500; i++)
             //{

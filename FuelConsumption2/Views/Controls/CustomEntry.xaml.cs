@@ -22,14 +22,26 @@ namespace FuelConsumption2.Views.Controls
 
         public string TextValue
         {
-            get { return (string)GetValue(TextValueProperty); }
-            set
-            {
-                SetValue(TextValueProperty, value);
-            }
+            get => (string)GetValue(TextValueProperty);
+            set => SetValue(TextValueProperty, value);
         }
 
-        void Handle_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public static readonly BindableProperty KeyboardValueProperty = BindableProperty.Create(
+            propertyName: nameof(Keyboard),
+            returnType: typeof(Keyboard),
+            declaringType: typeof(CustomEntry),
+            defaultValue: Keyboard.Default,
+            propertyChanged: (bindable, oldValue, newValue) => ((CustomEntry)bindable).MainEntry.Keyboard = (Keyboard)newValue,
+            defaultBindingMode: BindingMode.TwoWay
+        );
+
+        public Keyboard Keyboard
+        {
+            get => (Keyboard)GetValue(KeyboardValueProperty);
+            set => SetValue(KeyboardValueProperty, value);
+        }
+
+        private void Handle_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == Entry.TextProperty.PropertyName)
                 TextValue = ((Entry)sender).Text;

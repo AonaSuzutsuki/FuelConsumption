@@ -18,10 +18,7 @@ namespace FuelConsumption2.Views
     {
         public ListView ListView;
 
-        private List<MasterDetailMenuItem> _detailMenuItems;
-        public List<MasterDetailMenuItem> DetailMenuItems => _detailMenuItems ?? (_detailMenuItems = vm.MenuItems.ToList());
-
-        private MasterDetailMasterViewModel vm;
+        private readonly MasterDetailMasterViewModel _viewModel;
 
         public MasterDetailMaster()
         {
@@ -29,39 +26,33 @@ namespace FuelConsumption2.Views
 
             var model = new MasterDetailMasterModel
             {
-                ChangeSelectedItem = (item) => ItemSelected(item)
+                ChangeSelectedItem = ItemSelected
             };
-            vm = new MasterDetailMasterViewModel(model);
-            BindingContext = vm;
+            _viewModel = new MasterDetailMasterViewModel(model);
+            BindingContext = _viewModel;
             ListView = MenuItemsListView;
             ListView.ItemSelected += ListView_ItemSelected;
         }
 
         public void Load()
         {
-            vm.Load();
-
-            var first = DetailMenuItems.Count > 0 ? DetailMenuItems.First() : null;
-            if (first != null)
-                ItemSelected(first);
-            else
-                NavigationClass.PushDetail(new MasterDetailItemView(new MasterDetailMenuItem()));
+            _viewModel.Load();
         }
 
         public void Save(MasterDetailMenuItem item)
         {
-            vm.Save(item);
+            _viewModel.Save(item);
         }
 
         private void OnEdit(object sender, EventArgs e)
         {
             var model = (MenuItem)sender;
-            vm.MenuItemEditBt_Clicked((MasterDetailMenuItem)model.CommandParameter);
+            _viewModel.MenuItemEditBt_Clicked((MasterDetailMenuItem)model.CommandParameter);
         }
         private void OnDelete(object sender, EventArgs e)
         {
             var model = (MenuItem)sender;
-            vm.MenuItemDeleteBt_Clicked((MasterDetailMenuItem)model.CommandParameter);
+            _viewModel.MenuItemDeleteBt_Clicked((MasterDetailMenuItem)model.CommandParameter);
         }
 
 
