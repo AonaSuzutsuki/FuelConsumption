@@ -35,6 +35,13 @@ namespace FuelConsumption2.Models
 
 
 
+        //private bool addBtIsEnabled;
+        //public bool AddBtIsEnabled
+        //{
+        //    get => addBtIsEnabled;
+        //    set => SetProperty(ref addBtIsEnabled, value);
+        //}
+
         private double totalMileage;
         public double TotalMileage
         {
@@ -117,12 +124,6 @@ namespace FuelConsumption2.Models
                 FuelTypeSelectedItem = fuelConsumptionInfo.FuelType,
 
                 BaseOdo = BaseOdoFunc(),
-                ItemAddAction = (item) =>
-                {
-                    FuelConsumptionItems.Add(item);
-                    Sort();
-                    UpdateMillageAverage();
-                },
                 ChangedItemAction = () =>
                 {
                     Sort();
@@ -146,19 +147,19 @@ namespace FuelConsumption2.Models
 
         public void Load()
         {
-            var title = $"{PathConverter.MakeValidFileName(Title)}.json";
-            var filename = title.ResolveDocumentPath();
-            if (string.IsNullOrEmpty(Title) || !File.Exists(filename))
-                return;
-            var json = File.ReadAllText(filename);
-            var masterDetailMenuItems = JsonConvert.DeserializeObject<FuelConsumptionInfo[]>(json);
-            FuelConsumptionItems.AddRange(masterDetailMenuItems.OrderByDescending(info => info.Odo));
+            //var title = $"{PathConverter.MakeValidFileName(Title)}.json";
+            //var filename = title.ResolveDocumentPath();
+            //if (string.IsNullOrEmpty(Title) || !File.Exists(filename))
+            //    return;
+            //var json = File.ReadAllText(filename);
+            //var masterDetailMenuItems = JsonConvert.DeserializeObject<FuelConsumptionInfo[]>(json);
+            //FuelConsumptionItems.AddRange(masterDetailMenuItems.OrderByDescending(info => info.Odo));
 
-            //var csvLoader = new CsvLoader("Data/fuel.csv")
-            //{
-            //    BaseOdo = BaseOdoFunc()
-            //};
-            //FuelConsumptionItems = new ObservableCollection<FuelConsumptionInfo>(csvLoader.GetSortedFuelConsumptionInfos());
+            var csvLoader = new CsvLoader("Data/fuel.csv")
+            {
+                BaseOdo = BaseOdoFunc()
+            };
+            FuelConsumptionItems = new ObservableCollection<FuelConsumptionInfo>(csvLoader.GetSortedFuelConsumptionInfos());
 
             UpdateMillageAverage();
 

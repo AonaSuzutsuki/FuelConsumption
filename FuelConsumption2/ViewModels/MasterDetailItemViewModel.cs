@@ -23,6 +23,7 @@ namespace FuelConsumption2.ViewModels
         {
             _model = model;
 
+            //AddBtIsEnabled = model.ObserveProperty(m => m.AddBtIsEnabled).ToReactiveProperty();
             TotalMileage = model.ObserveProperty(m => m.TotalMileageText).ToReactiveProperty();
             AverageFuelConsumption = model.ObserveProperty(m => m.AverageFuelConsumptionText).ToReactiveProperty();
             FuelConsumptionItems = model.ToReactivePropertyAsSynchronized(m => m.FuelConsumptionItems); //ReactiveProperty.FromObject(model, m => m.FuelConsumptionItems);
@@ -31,6 +32,7 @@ namespace FuelConsumption2.ViewModels
 
         private readonly MasterDetailItemModel _model;
 
+        //public ReactiveProperty<bool> AddBtIsEnabled { get; set; }
         public ReactiveProperty<string> TotalMileage { get; set; }
         public ReactiveProperty<string> AverageFuelConsumption { get; set; }
         public ReactiveProperty<ObservableCollection<FuelConsumptionInfo>> FuelConsumptionItems { get; set; }

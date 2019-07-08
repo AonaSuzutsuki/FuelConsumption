@@ -3,7 +3,140 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FuelConsumption2.Views.FuelConsumptionDetailPage"
              BackgroundColor="Transparent">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#fff" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            
+            <Style x:Key="ValueLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#fff" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+            </Style>
+            
+            <Style x:Key="InputGrid" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="#444" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+            <Style x:Key="InputStackLayout" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#444" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" />
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
-        
+        <StackLayout Margin="20">
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1" Text="¥" />
+                <Label Grid.Column="2" BackgroundColor="Transparent"
+                       Text="{Binding PricePerLitter.Value}"
+                       Style="{StaticResource ValueLabel}" />
+                <Label Grid.Column="3" Text="/ L" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="Amount" />
+                <Label Grid.Column="2" BackgroundColor="Transparent"
+                       Text="{Binding Litter.Value}"
+                       Style="{StaticResource ValueLabel}" />
+                <Label Grid.Column="3"
+                       Text="L"
+                       HorizontalOptions="End" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="ODO" />
+                <Label Grid.Column="2" BackgroundColor="Transparent"
+                       Text="{Binding Odo.Value}"
+                       Style="{StaticResource ValueLabel}" />
+                <Label Grid.Column="3"
+                       Text="km"
+                       HorizontalOptions="End" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="Trip" />
+                <Label Grid.Column="2" BackgroundColor="Transparent"
+                       Text="{Binding Trip.Value}"
+                       Style="{StaticResource ValueLabel}" />
+                <Label Grid.Column="3"
+                       Text="km"
+                       HorizontalOptions="End" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="Date" />
+                <Label Grid.Column="2"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       Text="{Binding Date.Value}"
+                       Style="{StaticResource ValueLabel}" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" Text="Type" />
+                <Label Grid.Column="2"
+                       HorizontalOptions="End"
+                       Text="{Binding FuelType.Value}"
+                       Style="{StaticResource ValueLabel}" />
+            </Grid>
+            
+            <Grid Style="{StaticResource InputGrid}">
+                <Label BackgroundColor="Transparent"
+                       Text="{Binding MemoText}"
+                       HorizontalTextAlignment="Start"/>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

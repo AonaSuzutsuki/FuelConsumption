@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FuelConsumption2.Models;
+using FuelConsumption2.ViewModels;
 using Xamarin.Forms;
 
 namespace FuelConsumption2.Views
@@ -10,6 +11,10 @@ namespace FuelConsumption2.Views
         public FuelConsumptionDetailPage(FuelConsumptionInfo fuelConsumptionInfo)
         {
             InitializeComponent();
+
+            var model = new FuelConsumptionDetailPageModel(fuelConsumptionInfo);
+            var viewModel = new FuelConsumptionDetailPageViewModel(model);
+            BindingContext = viewModel;
         }
     }
 }

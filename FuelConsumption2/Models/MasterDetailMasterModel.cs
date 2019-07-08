@@ -61,18 +61,19 @@ namespace FuelConsumption2.Models
             this.Save(null);
         }
 
-
-
         public void Load()
         {
             var savedPath = Constants.VehiclesSavedPath;
             if (!File.Exists(savedPath))
                 return;
+
             var json = File.ReadAllText(savedPath);
             try
             {
                 var table = JsonConvert.DeserializeObject<VehicleTable>(json);
                 MenuItems.AddRange(table.MenuItems);
+                if (MenuItems.Count < 1)
+                    ChangeSelectedItem(new MasterDetailMenuItem());
                 foreach (var item in table.MenuItems)
                 {
                     if (item.Title == table.SelectedItem.Title)
