@@ -55,5 +55,10 @@ namespace FuelConsumption2.ViewModels
         {
             _model.Delete(fuelConsumptionInfo);
         }
+
+        public void FuelConsumptionItems_ItemSelected(FuelConsumptionInfo fuelConsumptionInfo)
+        {
+            _model.OpenDetailPage(fuelConsumptionInfo);
+        }
     }
 }

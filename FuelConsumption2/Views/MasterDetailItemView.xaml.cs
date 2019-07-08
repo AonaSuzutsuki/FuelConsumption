@@ -42,13 +42,14 @@ namespace FuelConsumption2.Views
             _viewModel.MenuItemEditBt_Clicked((FuelConsumptionInfo)model.CommandParameter);
         }
 
-        void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (!(e.SelectedItem is FuelConsumptionInfo item))
                 return;
 
-            NavigationClass.Push(new FuelConsumptionDetailPage());
-            ((ListView)sender).SelectedItem = null;
+            var listView = ((ListView) sender);
+            _viewModel.FuelConsumptionItems_ItemSelected((FuelConsumptionInfo)listView.SelectedItem);
+            listView.SelectedItem = null;
         }
     }
 }
