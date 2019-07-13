@@ -147,19 +147,19 @@ namespace FuelConsumption2.Models
 
         public void Load()
         {
-            //var title = $"{PathConverter.MakeValidFileName(Title)}.json";
-            //var filename = title.ResolveDocumentPath();
-            //if (string.IsNullOrEmpty(Title) || !File.Exists(filename))
-            //    return;
-            //var json = File.ReadAllText(filename);
-            //var masterDetailMenuItems = JsonConvert.DeserializeObject<FuelConsumptionInfo[]>(json);
-            //FuelConsumptionItems.AddRange(masterDetailMenuItems.OrderByDescending(info => info.Odo));
+            var title = $"{PathConverter.MakeValidFileName(Title)}.json";
+            var filename = title.ResolveDocumentPath();
+            if (string.IsNullOrEmpty(Title) || !File.Exists(filename))
+                return;
+            var json = File.ReadAllText(filename);
+            var masterDetailMenuItems = JsonConvert.DeserializeObject<FuelConsumptionInfo[]>(json);
+            FuelConsumptionItems.AddRange(masterDetailMenuItems.OrderByDescending(info => info.Odo));
 
-            var csvLoader = new CsvLoader("Data/fuel.csv")
-            {
-                BaseOdo = BaseOdoFunc()
-            };
-            FuelConsumptionItems = new ObservableCollection<FuelConsumptionInfo>(csvLoader.GetSortedFuelConsumptionInfos());
+            // var csvLoader = new CsvLoader("Data/fuel.csv")
+            // {
+            //    BaseOdo = BaseOdoFunc()
+            // };
+            // FuelConsumptionItems = new ObservableCollection<FuelConsumptionInfo>(csvLoader.GetSortedFuelConsumptionInfos());
 
             UpdateMillageAverage();
 
