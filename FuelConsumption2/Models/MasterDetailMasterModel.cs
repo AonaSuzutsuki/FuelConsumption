@@ -65,7 +65,10 @@ namespace FuelConsumption2.Models
         {
             var savedPath = Constants.VehiclesSavedPath;
             if (!File.Exists(savedPath))
+            {
+                ChangeSelectedItem(new MasterDetailMenuItem());
                 return;
+            }
 
             var json = File.ReadAllText(savedPath);
             try
