@@ -29,7 +29,7 @@
     </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit" />
+        <ToolbarItem Text="Edit" Command="{Binding EditButtonClicked}" />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

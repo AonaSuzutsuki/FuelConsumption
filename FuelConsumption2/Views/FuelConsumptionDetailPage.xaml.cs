@@ -8,11 +8,10 @@ namespace FuelConsumption2.Views
 {
     public partial class FuelConsumptionDetailPage : ContentPage
     {
-        public FuelConsumptionDetailPage(FuelConsumptionInfo fuelConsumptionInfo)
+        public FuelConsumptionDetailPage(FuelConsumptionDetailPageModel model)
         {
             InitializeComponent();
 
-            var model = new FuelConsumptionDetailPageModel(fuelConsumptionInfo);
             var viewModel = new FuelConsumptionDetailPageViewModel(model);
             BindingContext = viewModel;
         }

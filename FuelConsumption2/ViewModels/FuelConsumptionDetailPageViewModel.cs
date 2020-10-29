@@ -23,6 +23,7 @@ namespace FuelConsumption2.ViewModels
             FuelType = model.ObserveProperty(m => m.FuelType).ToReactiveProperty();
 
             CloseBtClicked = new Command(CloseBt_Clicked);
+            EditButtonClicked = new Command(EditButton_Clicked);
         }
 
         private readonly FuelConsumptionDetailPageModel _model;
@@ -39,10 +40,16 @@ namespace FuelConsumption2.ViewModels
         public ReactiveProperty<string> FuelTypeSelectedItem { get; set; }
 
         public ICommand CloseBtClicked { get; set; }
+        public ICommand EditButtonClicked { get; set; }
 
         public void CloseBt_Clicked()
         {
             NavigationClass.CloseModal();
+        }
+
+        public void EditButton_Clicked()
+        {
+            _model.ShowEdit();
         }
     }
 }

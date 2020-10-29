@@ -26,7 +26,6 @@ namespace FuelConsumption2.Models
 
         public Action<MasterDetailMenuItem> ChangeSelectedItem { get; set; }
 
-
         public void MenuItemAdd()
         {
             NavigationClass.PushModal(new AddVehiclePage((item) => MenuItems.Add(item), Save));

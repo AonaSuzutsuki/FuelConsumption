@@ -23,6 +23,7 @@ namespace FuelConsumption2.Views
             var model = new MasterDetailItemModel
             {
                 Title = masterDetailMenuItem.Title,
+                IsInitialized = masterDetailMenuItem.Title == null,
                 BaseOdoFunc = () => masterDetailMenuItem.BaseOdo
             };
             _viewModel = new MasterDetailItemViewModel(model);

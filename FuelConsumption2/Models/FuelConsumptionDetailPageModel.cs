@@ -1,4 +1,5 @@
 ﻿using System;
+using FuelConsumption2.Views;
 using Prism.Mvvm;
 using Reactive.Bindings;
 
@@ -6,6 +7,8 @@ namespace FuelConsumption2.Models
 {
     public class FuelConsumptionDetailPageModel : BindableBase
     {
+
+        public Action ShowEditAction { get; set; }
 
         private string pricePerLitter;
         public string PricePerLitter
@@ -65,6 +68,11 @@ namespace FuelConsumption2.Models
             Date = fuelConsumptionInfo.Date.ToString("yyyy/MM/dd");
             Memo = fuelConsumptionInfo.Memo;
             FuelType = fuelConsumptionInfo.FuelType;
+        }
+
+        public void ShowEdit()
+        {
+            ShowEditAction();
         }
     }
 }

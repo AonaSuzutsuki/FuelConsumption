@@ -16,6 +16,8 @@ namespace FuelConsumption2.Models
     {
         public string Title { get; set; }
 
+        public bool IsInitialized { get; set; } = true;
+
         public Func<double> BaseOdoFunc { get; set; }
 
 
@@ -74,6 +76,9 @@ namespace FuelConsumption2.Models
 
         public void AddFuelConsumption()
         {
+            if (IsInitialized)
+                return;
+
             NavigationClass.PushModal(new AddFuelConsumptionPage(new AddFuelConsumptionPageModel(FuelConsumptionItems)
             {
                 BaseOdo = BaseOdoFunc(),
@@ -142,7 +147,10 @@ namespace FuelConsumption2.Models
 
         public void OpenDetailPage(FuelConsumptionInfo fuelConsumptionInfo)
         {
-            NavigationClass.Push(new FuelConsumptionDetailPage(fuelConsumptionInfo));
+            NavigationClass.Push(new FuelConsumptionDetailPage(new FuelConsumptionDetailPageModel(fuelConsumptionInfo)
+            {
+                ShowEditAction = () => Edit(fuelConsumptionInfo)
+            }));
         }
 
         public void Load()
